@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { COMPANY, PARTNERS, STATS } from "@/lib/data";
+import Image from "next/image";
+import { COMPANY, PARTNERS, STATS, IMAGES } from "@/lib/data";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
@@ -156,9 +157,18 @@ export default async function AboutPage({ params }: PageProps) {
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
               {PARTNERS.map((p) => (
-                <div key={p.name} className="border border-slate-200 rounded p-4 text-center">
-                  <div className="font-semibold text-slate-800 text-sm">{p.name}</div>
-                  <div className="text-xs text-slate-400 mt-1">{p.country}</div>
+                <div key={p.name} className="border border-slate-200 rounded p-4 flex flex-col items-center gap-2">
+                  {IMAGES.partners[p.name] && (
+                    <Image
+                      src={IMAGES.partners[p.name]}
+                      alt={p.name}
+                      width={100}
+                      height={50}
+                      className="object-contain h-10 w-auto"
+                    />
+                  )}
+                  <div className="font-semibold text-slate-800 text-xs text-center">{p.name}</div>
+                  <div className="text-xs text-slate-400">{p.country}</div>
                 </div>
               ))}
             </div>

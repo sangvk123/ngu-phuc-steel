@@ -215,11 +215,22 @@ export default async function HomePage({ params }: PageProps) {
           <p className="text-center text-xs text-slate-400 uppercase tracking-widest font-medium mb-8">
             {isEn ? "Strategic Partners" : "Đối tác chiến lược"}
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
+          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6">
             {PARTNERS.map((p) => (
-              <span key={p.name} className="text-sm font-semibold text-slate-400 hover:text-slate-700 transition-colors">
-                {p.name}
-              </span>
+              IMAGES.partners[p.name] ? (
+                <Image
+                  key={p.name}
+                  src={IMAGES.partners[p.name]}
+                  alt={p.name}
+                  width={120}
+                  height={60}
+                  className="object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-200"
+                />
+              ) : (
+                <span key={p.name} className="text-sm font-semibold text-slate-400">
+                  {p.name}
+                </span>
+              )
             ))}
           </div>
         </div>

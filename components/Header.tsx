@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { NAV, COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -57,18 +58,15 @@ export default function Header({ locale }: HeaderProps) {
       <nav className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href={localePath("/")} className="flex items-center gap-3 flex-shrink-0">
-            <div className="w-9 h-9 bg-slate-900 flex items-center justify-center rounded">
-              <span className="text-white font-bold text-sm tracking-tighter">NP</span>
-            </div>
-            <div>
-              <div className="font-bold text-slate-900 text-base leading-none">
-                {locale === "vi" ? "THÉP NGŨ PHÚC" : "NGU PHUC STEEL"}
-              </div>
-              <div className="text-slate-400 text-xs mt-0.5">
-                {locale === "vi" ? "Cung cấp & Gia công thép" : "Steel Supply & Processing"}
-              </div>
-            </div>
+          <Link href={localePath("/")} className="flex-shrink-0">
+            <Image
+              src="/images/logo/logo-ngu-phuc.png"
+              alt={locale === "vi" ? "Thép Ngũ Phúc" : "Ngu Phuc Steel"}
+              width={150}
+              height={45}
+              className="object-contain h-10 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
