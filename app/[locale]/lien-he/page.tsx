@@ -26,8 +26,31 @@ export default function ContactPage({ params }: PageProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
-    await new Promise((r) => setTimeout(r, 800));
-    setStatus("success");
+    try {
+      // Formspree endpoint — replace FORM_ID with your actual Formspree form ID
+      // Sign up free at formspree.io → New Form → copy the form ID
+      const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "YOUR_FORM_ID";
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          phone: formData.phone,
+          email: formData.email,
+          product: formData.product,
+          message: formData.message,
+          _subject: `[Ngũ Phúc Steel] Yêu cầu báo giá từ ${formData.company || formData.name}`,
+        }),
+      });
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -136,6 +159,23 @@ export default function ContactPage({ params }: PageProps) {
                     ? "Your request has been received. We will respond within 24 business hours."
                     : "Yêu cầu của bạn đã được ghi nhận. Chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc."}
                 </p>
+              </div>
+            ) : status === "error" ? (
+              <div className="border border-red-200 bg-red-50 rounded p-8 text-center">
+                <h3 className="font-semibold text-red-800 mb-2">
+                  {isEn ? "Submission Failed" : "Gửi không thành công"}
+                </h3>
+                <p className="text-red-600 text-sm mb-4">
+                  {isEn
+                    ? "Please try again or contact us directly by phone."
+                    : "Vui lòng thử lại hoặc liên hệ trực tiếp qua điện thoại."}
+                </p>
+                <button
+                  onClick={() => setStatus("idle")}
+                  className="text-xs font-semibold text-red-700 underline"
+                >
+                  {isEn ? "Try again" : "Thử lại"}
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4" noValidate>
