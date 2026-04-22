@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact",
+    "quote": "Request Quote"
+  },
+  "home": {
+    "hero": {
+      "badge": "ISO 9001:2015 · BSI Certified 2024",
+      "heading1": "Vietnam's Premier",
+      "heading2": "Steel Processor & Supplier",
+      "sub": "30 years of experience supplying and processing high-quality steel for FDI manufacturers, shipbuilding, automotive, and construction sectors across Vietnam.",
+      "cta_primary": "Request a Quote",
+      "cta_secondary": "View Capabilities"
+    },
+    "stats": {
+      "years": { "value": "30+", "label": "Years of Operation" },
+      "partners": { "value": "10", "label": "International Steel Partners" },
+      "capacity": { "value": "#1", "label": "Largest Slitting Line in Vietnam" },
+      "iso": { "value": "ISO", "label": "9001:2015 Certified" }
+    },
+    "services_title": "Core Capabilities",
+    "services_sub": "From import to processing — comprehensive steel solutions for industry",
+    "products_title": "Products",
+    "projects_title": "Featured Projects",
+    "partners_title": "Strategic Partners",
+    "cta_title": "Need a quote or technical consultation?",
+    "cta_sub": "Our technical team is available during business hours.",
+    "cta_phone": "Call Now",
+    "cta_form": "Send Request"
+  },
+  "about": {
+    "title": "About",
+    "heading": "About Ngu Phuc Steel",
+    "story": "Ngu Phuc Steel Joint Stock Company, based in Hai Phong, has been operating for over 30 years in steel supply, processing, and distribution. We are a leading supplier of steel plates, coils, and structural steel in Northern Vietnam.",
+    "story2": "With state-of-the-art equipment — including Vietnam's largest steel coil slitting line — and a team of experienced engineers and technicians, we serve FDI manufacturers, shipyards, automotive plants, and construction companies to international standards.",
+    "story3": "In 2024, Ngu Phuc Steel was certified to ISO 9001:2015 by BSI Group (British Standards Institution), affirming our quality management system meets global standards."
+  },
+  "products": {
+    "title": "Products",
+    "sub": "High-quality steel meeting international standards from leading manufacturers in Japan, South Korea, and Taiwan.",
+    "quote_cta": "Request a Quote for This Product"
+  },
+  "services": {
+    "title": "Services",
+    "sub": "Rigorous processing procedures and strict quality control to meet the most demanding technical requirements."
+  },
+  "projects": {
+    "title": "Projects & Clients",
+    "sub": "Featured projects where Ngu Phuc Steel has been a key materials partner."
+  },
+  "contact": {
+    "title": "Contact",
+    "sub": "Submit a quote request or contact our sales team directly.",
+    "form": {
+      "name": "Full Name",
+      "company": "Company",
+      "phone": "Phone Number",
+      "email": "Email",
+      "product": "Product / Service of Interest",
+      "message": "Detailed Requirements",
+      "submit": "Send Request",
+      "success": "Your request has been received. We will respond within 24 business hours."
+    }
+  },
+  "footer": {
+    "tagline": "30 Years of Trust — International Quality",
+    "copyright": "Ngu Phuc Steel Joint Stock Company. All rights reserved."
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "products": "Sản phẩm",
+    "services": "Dịch vụ",
+    "projects": "Dự án",
+    "contact": "Liên hệ",
+    "quote": "Yêu cầu báo giá"
+  },
+  "home": {
+    "hero": {
+      "badge": "ISO 9001:2015 · BSI Certified 2024",
+      "heading1": "Nhà cung cấp thép",
+      "heading2": "hàng đầu miền Bắc",
+      "sub": "30 năm kinh nghiệm cung cấp và gia công thép chất lượng cao cho các doanh nghiệp FDI, đóng tàu, công nghiệp ô tô và xây dựng tại Việt Nam.",
+      "cta_primary": "Yêu cầu báo giá",
+      "cta_secondary": "Xem năng lực"
+    },
+    "stats": {
+      "years": { "value": "30+", "label": "Năm hoạt động" },
+      "partners": { "value": "10", "label": "Đối tác thép quốc tế" },
+      "capacity": { "value": "#1", "label": "Dây chuyền xả băng lớn nhất VN" },
+      "iso": { "value": "ISO", "label": "9001:2015 Certified" }
+    },
+    "services_title": "Năng lực cốt lõi",
+    "services_sub": "Từ nhập khẩu đến gia công — giải pháp thép toàn diện cho doanh nghiệp",
+    "products_title": "Sản phẩm",
+    "projects_title": "Dự án tiêu biểu",
+    "partners_title": "Đối tác chiến lược",
+    "cta_title": "Cần tư vấn hoặc báo giá?",
+    "cta_sub": "Đội ngũ kỹ thuật của chúng tôi sẵn sàng hỗ trợ trong giờ làm việc.",
+    "cta_phone": "Gọi ngay",
+    "cta_form": "Gửi yêu cầu"
+  },
+  "about": {
+    "title": "Giới thiệu",
+    "heading": "Về Thép Ngũ Phúc",
+    "story": "Công ty Cổ phần Thép Ngũ Phúc được thành lập tại Hải Phòng với hơn 30 năm hoạt động trong lĩnh vực cung cấp, gia công và phân phối thép. Chúng tôi là nhà cung cấp thép tấm, thép cuộn và thép hình hàng đầu tại miền Bắc Việt Nam.",
+    "story2": "Với hệ thống máy móc hiện đại — bao gồm dây chuyền xả băng khổ lớn nhất Việt Nam — và đội ngũ kỹ sư, kỹ thuật viên lành nghề, chúng tôi phục vụ các khách hàng FDI, doanh nghiệp đóng tàu, công nghiệp ô tô và xây dựng với tiêu chuẩn quốc tế.",
+    "story3": "Năm 2024, Ngũ Phúc Steel được BSI Group (British Standards Institution) cấp chứng nhận ISO 9001:2015, khẳng định hệ thống quản lý chất lượng đạt tiêu chuẩn toàn cầu."
+  },
+  "products": {
+    "title": "Sản phẩm",
+    "sub": "Thép chất lượng cao đạt tiêu chuẩn quốc tế từ các nhà sản xuất hàng đầu Nhật Bản, Hàn Quốc, Đài Loan.",
+    "quote_cta": "Yêu cầu báo giá sản phẩm này"
+  },
+  "services": {
+    "title": "Dịch vụ",
+    "sub": "Quy trình gia công nghiêm ngặt, kiểm soát chất lượng theo tiêu chuẩn ISO 9001:2015."
+  },
+  "projects": {
+    "title": "Dự án & Khách hàng",
+    "sub": "Những dự án tiêu biểu mà Ngũ Phúc Steel đã đồng hành."
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "sub": "Gửi yêu cầu báo giá hoặc liên hệ trực tiếp với đội ngũ kinh doanh.",
+    "form": {
+      "name": "Họ và tên",
+      "company": "Công ty",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "product": "Sản phẩm / Dịch vụ quan tâm",
+      "message": "Yêu cầu chi tiết",
+      "submit": "Gửi yêu cầu",
+      "success": "Yêu cầu của bạn đã được ghi nhận. Chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc."
+    }
+  },
+  "footer": {
+    "tagline": "30 năm uy tín — Chất lượng quốc tế",
+    "copyright": "Công ty Cổ phần Thép Ngũ Phúc. All rights reserved."
+  }
+}
