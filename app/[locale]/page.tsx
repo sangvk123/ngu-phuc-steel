@@ -157,7 +157,7 @@ export default async function HomePage({ params }: PageProps) {
                   <div className="flex flex-wrap gap-1.5">
                     {p.specs.slice(0, 2).map((spec) => (
                       <span key={spec.value} className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded">
-                        {spec.value}
+                        {isEn ? (spec.valueEn ?? spec.value) : spec.value}
                       </span>
                     ))}
                   </div>

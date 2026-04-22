@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PROJECTS } from "@/lib/data";
+import Image from "next/image";
+import { PROJECTS, IMAGES } from "@/lib/data";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
@@ -54,16 +55,14 @@ export default async function ProjectsPage({ params }: PageProps) {
                     {isEn ? proj.descEn : proj.descVi}
                   </p>
                 </div>
-                <div className={`aspect-video bg-slate-100 border border-slate-200 rounded flex items-center justify-center ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="text-center">
-                    <div className="text-slate-300 text-xs uppercase tracking-widest font-medium mb-2">
-                      {isEn ? "Image placeholder" : "Ảnh minh họa"}
-                    </div>
-                    <div className="text-slate-400 text-sm">{proj.client}</div>
-                    <div className="text-slate-300 text-xs mt-1">
-                      {isEn ? "Replace with project photo" : "Thay bằng ảnh dự án thực tế"}
-                    </div>
-                  </div>
+                <div className={`relative aspect-video rounded overflow-hidden border border-slate-200 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                  <Image
+                    src={IMAGES.projects[proj.client] ?? IMAGES.slides[i % IMAGES.slides.length]}
+                    alt={proj.client}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
                 </div>
               </div>
               {i < PROJECTS.length - 1 && <Separator className="mt-16 bg-slate-100" />}

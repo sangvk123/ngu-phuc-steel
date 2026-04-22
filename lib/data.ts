@@ -49,6 +49,12 @@ export const IMAGES = {
     "CSC Steel": "/images/partners/csc.jpg",
     "Hòa Phát": "/images/partners/hoaphat.jpg",
   } as Record<string, string>,
+  projects: {
+    "Damen Shipbuilding": "/images/slides/slide-1.jpg",
+    "VinFast": "/images/slides/slide-2.jpg",
+    "VinGroup": "/images/slides/slide-3.jpg",
+    "VSIP": "/images/slides/slide-4.jpg",
+  } as Record<string, string>,
 };
 
 export const COMPANY = {
@@ -176,9 +182,9 @@ export const PRODUCTS = [
     descVi: "Thép tấm trơn, tấm gân, cán nguội, cán nóng và thép mạ kẽm nhúng nóng (GI). Cung cấp gia công theo yêu cầu.",
     descEn: "Plain sheets, ribbed sheets, cold-rolled, hot-rolled, and hot-dip galvanized (GI) steel. Custom processing available.",
     specs: [
-      { labelVi: "Chủng loại", labelEn: "Types", value: "Tấm trơn / Tấm gân / GI" },
-      { labelVi: "Xử lý bề mặt", labelEn: "Surface", value: "Cán nguội / Cán nóng / Mạ kẽm" },
-      { labelVi: "Gia công", labelEn: "Processing", value: "Cắt theo yêu cầu" },
+      { labelVi: "Chủng loại", labelEn: "Types", value: "Tấm trơn / Tấm gân / GI", valueEn: "Plain / Ribbed / GI" },
+      { labelVi: "Xử lý bề mặt", labelEn: "Surface", value: "Cán nguội / Cán nóng / Mạ kẽm", valueEn: "Cold-Rolled / Hot-Rolled / Galvanized" },
+      { labelVi: "Gia công", labelEn: "Processing", value: "Cắt theo yêu cầu", valueEn: "Cut-to-Size" },
     ],
   },
   {
@@ -189,8 +195,8 @@ export const PRODUCTS = [
     descEn: "Durable color-coated steel in a wide range of RAL colors. High corrosion resistance, suitable for industrial roofing and cladding.",
     specs: [
       { labelVi: "Độ dày", labelEn: "Thickness", value: "0.3 – 0.8 mm" },
-      { labelVi: "Màu sắc", labelEn: "Colors", value: "Theo tiêu chuẩn RAL" },
-      { labelVi: "Chống ăn mòn", labelEn: "Corrosion", value: "Cấp độ cao / High Grade" },
+      { labelVi: "Màu sắc", labelEn: "Colors", value: "Theo tiêu chuẩn RAL", valueEn: "RAL Standard" },
+      { labelVi: "Chống ăn mòn", labelEn: "Corrosion", value: "Cấp độ cao", valueEn: "High Grade" },
     ],
   },
 ];

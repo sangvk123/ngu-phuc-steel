@@ -83,7 +83,7 @@ export default async function ProductsPage({ params }: PageProps) {
                       {p.specs.map((spec) => (
                         <div key={spec.value} className="flex items-start justify-between gap-4 text-sm">
                           <dt className="text-slate-500 text-xs">{isEn ? spec.labelEn : spec.labelVi}</dt>
-                          <dd className="font-medium text-slate-800 text-xs text-right">{spec.value}</dd>
+                          <dd className="font-medium text-slate-800 text-xs text-right">{isEn ? (spec.valueEn ?? spec.value) : spec.value}</dd>
                         </div>
                       ))}
                     </dl>
