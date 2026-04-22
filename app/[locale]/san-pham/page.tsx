@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PRODUCTS, COMPANY } from "@/lib/data";
+import Image from "next/image";
+import { PRODUCTS, COMPANY, IMAGES } from "@/lib/data";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
@@ -43,21 +44,20 @@ export default async function ProductsPage({ params }: PageProps) {
           {PRODUCTS.map((p, i) => (
             <div key={p.id} id={p.id} className="scroll-mt-20">
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
-                {/* Image placeholder */}
-                <div
-                  className={`aspect-video bg-slate-100 rounded flex items-center justify-center border border-slate-200 ${i % 2 === 1 ? "lg:order-2" : ""}`}
-                >
-                  <div className="text-center">
-                    <div className="text-slate-300 text-xs uppercase tracking-widest font-medium mb-2">
-                      {isEn ? "Image placeholder" : "Ảnh minh họa"}
+                <div className={`relative aspect-video rounded overflow-hidden border border-slate-200 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+                  {IMAGES.products[p.id] ? (
+                    <Image
+                      src={IMAGES.products[p.id]}
+                      alt={isEn ? p.nameEn : p.nameVi}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-slate-100 flex items-center justify-center">
+                      <span className="text-slate-400 text-sm">{isEn ? p.nameEn : p.nameVi}</span>
                     </div>
-                    <div className="text-slate-400 text-sm font-medium">
-                      {isEn ? p.nameEn : p.nameVi}
-                    </div>
-                    <div className="text-slate-300 text-xs mt-1">
-                      {isEn ? "Replace with actual product photo" : "Thay bằng ảnh sản phẩm thực tế"}
-                    </div>
-                  </div>
+                  )}
                 </div>
 
                 <div className={i % 2 === 1 ? "lg:order-1" : ""}>

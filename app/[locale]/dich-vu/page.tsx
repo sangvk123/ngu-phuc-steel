@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SERVICES } from "@/lib/data";
+import Image from "next/image";
+import { SERVICES, IMAGES } from "@/lib/data";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
@@ -69,18 +70,14 @@ export default async function ServicesPage({ params }: PageProps) {
                 ))}
               </div>
             </div>
-            <div className="aspect-video bg-slate-800 border border-slate-700 rounded flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-slate-500 text-xs uppercase tracking-widest font-medium mb-2">
-                  {isEn ? "Image placeholder" : "Ảnh minh họa"}
-                </div>
-                <div className="text-slate-400 text-sm">
-                  {isEn ? "Slitting Line — Factory 2, An Duong" : "Dây chuyền xả băng — Nhà máy 2, An Dương"}
-                </div>
-                <div className="text-slate-600 text-xs mt-1">
-                  {isEn ? "Replace with actual facility photo" : "Thay bằng ảnh nhà máy thực tế"}
-                </div>
-              </div>
+            <div className="relative aspect-video rounded overflow-hidden border border-slate-700">
+              <Image
+                src={IMAGES.services.slitting}
+                alt={isEn ? "Slitting Line — Factory 2, An Duong" : "Dây chuyền xả băng — Nhà máy 2, An Dương"}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>
@@ -114,13 +111,20 @@ export default async function ServicesPage({ params }: PageProps) {
                     ))}
                   </ul>
                 </div>
-                <div className="aspect-video bg-slate-100 border border-slate-200 rounded flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-slate-300 text-xs uppercase tracking-widest font-medium mb-2">
-                      {isEn ? "Image placeholder" : "Ảnh minh họa"}
+                <div className="relative aspect-video rounded overflow-hidden border border-slate-200">
+                  {IMAGES.services[s.id] ? (
+                    <Image
+                      src={IMAGES.services[s.id]}
+                      alt={isEn ? s.nameEn : s.nameVi}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-slate-100 flex items-center justify-center">
+                      <span className="text-slate-400 text-sm">{isEn ? s.nameEn : s.nameVi}</span>
                     </div>
-                    <div className="text-slate-400 text-sm">{isEn ? s.nameEn : s.nameVi}</div>
-                  </div>
+                  )}
                 </div>
               </div>
               {i < SERVICES.length - 1 && <Separator className="mt-20 bg-slate-100" />}

@@ -1,9 +1,9 @@
-import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { STATS, SERVICES, PRODUCTS, PROJECTS, PARTNERS, COMPANY } from "@/lib/data";
+import Image from "next/image";
+import { STATS, SERVICES, PRODUCTS, PROJECTS, PARTNERS, COMPANY, IMAGES } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import VideoSection from "@/components/VideoSection";
 
 interface PageProps {
   params: Promise<{ locale: "vi" | "en" }>;
@@ -134,26 +134,33 @@ export default async function HomePage({ params }: PageProps) {
               <Link
                 key={p.id}
                 href={localePath(`/san-pham#${p.id}`)}
-                className="group bg-white border border-slate-200 rounded p-6 hover:border-slate-400 hover:shadow-sm transition-all"
+                className="group bg-white border border-slate-200 rounded overflow-hidden hover:border-slate-400 hover:shadow-sm transition-all"
               >
-                <div className="text-xs text-slate-400 uppercase tracking-widest font-medium mb-2">
-                  {isEn ? p.nameEn : p.nameVi}
-                </div>
-                <h3 className="font-semibold text-slate-900 mb-3 text-sm">
-                  {isEn ? p.nameEn : p.nameVi}
-                </h3>
-                <p className="text-slate-500 text-xs leading-relaxed mb-4 line-clamp-3">
-                  {isEn ? p.descEn : p.descVi}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.specs.slice(0, 2).map((spec) => (
-                    <span
-                      key={spec.value}
-                      className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded"
-                    >
-                      {spec.value}
-                    </span>
-                  ))}
+                {IMAGES.products[p.id] && (
+                  <div className="relative h-44 bg-slate-100 overflow-hidden">
+                    <Image
+                      src={IMAGES.products[p.id]}
+                      alt={isEn ? p.nameEn : p.nameVi}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                )}
+                <div className="p-5">
+                  <h3 className="font-semibold text-slate-900 mb-2 text-sm">
+                    {isEn ? p.nameEn : p.nameVi}
+                  </h3>
+                  <p className="text-slate-500 text-xs leading-relaxed mb-3 line-clamp-2">
+                    {isEn ? p.descEn : p.descVi}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.specs.slice(0, 2).map((spec) => (
+                      <span key={spec.value} className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded">
+                        {spec.value}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </Link>
             ))}
@@ -217,6 +224,9 @@ export default async function HomePage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* ─── VIDEO ────────────────────────────────────────────── */}
+      <VideoSection locale={locale} />
 
       {/* ─── CTA ──────────────────────────────────────────────── */}
       <section className="py-20 px-4 sm:px-6 bg-slate-900 text-white">

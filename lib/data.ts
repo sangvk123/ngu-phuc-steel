@@ -1,3 +1,56 @@
+export const VIDEOS = [
+  {
+    id: "xzu3z9kjIqA",
+    titleVi: "Máy cắt cuộn Inox 304 tại nhà máy Ngũ Phúc — Hải Phòng",
+    titleEn: "Inox 304 Coil Slitting Machine at Ngu Phuc Factory — Hai Phong",
+    descVi: "Dây chuyền cắt cuộn Inox 304 hiện đại tại nhà máy Ngũ Phúc, Hải Phòng.",
+    descEn: "Modern Inox 304 coil slitting line at Ngu Phuc's Hai Phong factory.",
+  },
+  {
+    id: "WN7EUp1jWj0",
+    titleVi: "Phóng sự công nghiệp phụ trợ — Thép Ngũ Phúc",
+    titleEn: "Supporting Industry Documentary — Ngu Phuc Steel",
+    descVi: "Phóng sự công nghiệp phụ trợ về Công ty Cổ phần Thép Ngũ Phúc.",
+    descEn: "Documentary on Ngu Phuc Steel's role in Vietnam's supporting industries.",
+  },
+];
+
+export const IMAGES = {
+  logo: "/images/logo/logo-ngu-phuc.png",
+  slides: [
+    "/images/slides/slide-1.jpg",
+    "/images/slides/slide-2.jpg",
+    "/images/slides/slide-3.jpg",
+    "/images/slides/slide-4.jpg",
+    "/images/slides/slide-5.jpg",
+  ],
+  products: {
+    "thep-cuon-ma": "/images/products/thep-cuon-ma.jpg",
+    "thep-cay": "/images/products/thep-cay.jpg",
+    "thep-tam": "/images/products/thep-tam.jpg",
+    "thep-hinh": "/images/products/thep-hinh.jpg",
+    "thep-tam-kien": "/images/products/thep-tam-kien.jpg",
+    "thep-ma-mau": "/images/products/thep-ma-mau.jpg",
+  } as Record<string, string>,
+  services: {
+    supply: "/images/services/nha-may.jpg",
+    "cut-to-length": "/images/services/cat-tam.jpg",
+    slitting: "/images/services/xa-bang.jpg",
+  } as Record<string, string>,
+  partners: {
+    "Nippon Steel": "/images/partners/nippon.jpg",
+    "Hyundai Steel": "/images/partners/hyundai.jpg",
+    "Hoa Sen Group": "/images/partners/hoasen.jpg",
+    "Rizhao Steel": "/images/partners/rizhao.jpg",
+    "Kobelco Steel": "/images/partners/kobelco.jpg",
+    "JFE Steel": "/images/partners/jfe.jpg",
+    "Bao Steel": "/images/partners/baosteel.jpg",
+    "POSCO": "/images/partners/posco.jpg",
+    "CSC Steel": "/images/partners/csc.jpg",
+    "Hòa Phát": "/images/partners/hoaphat.jpg",
+  } as Record<string, string>,
+};
+
 export const COMPANY = {
   name: "Thép Ngũ Phúc",
   nameEn: "Ngu Phuc Steel",
