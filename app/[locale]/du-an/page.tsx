@@ -12,7 +12,12 @@ interface PageProps { params: Promise<{ locale: "vi" | "en" | "ja" }> }
 export default async function ProjectsPage({ params }: PageProps) {
   const { locale } = await params;
   const isEn = locale === "en";
-  const localePath = (href: string) => (isEn ? `/en${href === "/" ? "" : href}` : href);
+  const isJa = locale === "ja";
+  const localePath = (href: string) => {
+    if (isEn) return `/en${href === "/" ? "" : href}`;
+    if (isJa) return `/ja${href === "/" ? "" : href}`;
+    return href;
+  };
 
   return (
     <>

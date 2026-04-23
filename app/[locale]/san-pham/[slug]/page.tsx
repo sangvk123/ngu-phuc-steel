@@ -69,11 +69,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function GradeProductPage({ params }: PageProps) {
   const { locale, slug } = await params;
   const isEn = locale === "en";
+  const isJa = locale === "ja";
   const product = GRADE_PRODUCTS.find((p) => p.id === slug);
 
   if (!product) notFound();
 
-  const localePath = (href: string) => (isEn ? `/en${href === "/" ? "" : href}` : href);
+  const localePath = (href: string) => {
+    if (isEn) return `/en${href === "/" ? "" : href}`;
+    if (isJa) return `/ja${href === "/" ? "" : href}`;
+    return href;
+  };
 
   return (
     <>

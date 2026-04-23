@@ -12,7 +12,12 @@ interface PageProps { params: Promise<{ locale: "vi" | "en" | "ja" }> }
 export default function ContactPage({ params }: PageProps) {
   const { locale } = use(params);
   const isEn = locale === "en";
-  const localePath = (href: string) => (isEn ? `/en${href === "/" ? "" : href}` : href);
+  const isJa = locale === "ja";
+  const localePath = (href: string) => {
+    if (isEn) return `/en${href === "/" ? "" : href}`;
+    if (isJa) return `/ja${href === "/" ? "" : href}`;
+    return href;
+  };
 
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [formData, setFormData] = useState({

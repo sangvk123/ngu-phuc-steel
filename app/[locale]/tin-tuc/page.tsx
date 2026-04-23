@@ -72,7 +72,12 @@ const NEWS = [
 export default async function NewsPage({ params }: PageProps) {
   const { locale } = await params;
   const isEn = locale === "en";
-  const localePath = (href: string) => (isEn ? `/en${href === "/" ? "" : href}` : href);
+  const isJa = locale === "ja";
+  const localePath = (href: string) => {
+    if (isEn) return `/en${href === "/" ? "" : href}`;
+    if (isJa) return `/ja${href === "/" ? "" : href}`;
+    return href;
+  };
 
   const categories = [
     { vi: "Tất cả", en: "All" },
