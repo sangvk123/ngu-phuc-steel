@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "@/lib/navigation";
 import { NAV, COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -34,7 +34,8 @@ export default function Header({ locale }: HeaderProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
+  const router = useRouter();
+  const pathname = usePathname(); // from next-intl — no locale prefix
 
   const t = (key: string) => LABELS[key]?.[locale] ?? key;
 
@@ -42,14 +43,6 @@ export default function Header({ locale }: HeaderProps) {
     if (locale === "en") return `/en${href === "/" ? "" : href}`;
     if (locale === "ja") return `/ja${href === "/" ? "" : href}`;
     return href;
-  };
-
-  const switchLocalePath = (targetLocale: string) => {
-    let base = pathname;
-    if (base.startsWith("/en")) base = base.slice(3) || "/";
-    if (base.startsWith("/ja")) base = base.slice(3) || "/";
-    if (targetLocale === "vi") return base || "/";
-    return `/${targetLocale}${base === "/" ? "" : base}`;
   };
 
   const currentLang = LANGS.find((l) => l.code === locale) ?? LANGS[0];
@@ -101,11 +94,13 @@ export default function Header({ locale }: HeaderProps) {
             {langOpen && (
               <div className="absolute right-0 top-full mt-1.5 bg-white border border-slate-200 rounded shadow-lg z-50 min-w-36 overflow-hidden">
                 {LANGS.map((l) => (
-                  <Link
+                  <button
                     key={l.code}
-                    href={switchLocalePath(l.code)}
-                    onClick={() => setLangOpen(false)}
-                    className={`flex items-center gap-2.5 px-3 py-2 text-xs transition-colors ${
+                    onClick={() => {
+                      router.replace(pathname, { locale: l.code });
+                      setLangOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 text-xs transition-colors text-left ${
                       l.code === locale
                         ? "bg-slate-50 font-semibold text-slate-900"
                         : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
@@ -113,7 +108,7 @@ export default function Header({ locale }: HeaderProps) {
                   >
                     <span className="text-sm">{l.flag}</span>
                     <span>{l.label}</span>
-                  </Link>
+                  </button>
                 ))}
               </div>
             )}
