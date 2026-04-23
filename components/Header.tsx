@@ -43,7 +43,10 @@ export default function Header({ locale }: HeaderProps) {
             <span className="hidden sm:block">{locale === "vi" ? COMPANY.hours : COMPANY.hoursEn}</span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="hidden sm:block text-slate-500">MST: {COMPANY.taxId}</span>
+            <a href={`tel:${COMPANY.phoneMobile}`} className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+              <span className="text-slate-500">{locale === "vi" ? "Hotline:" : "Sales:"}</span>
+              <span>{COMPANY.phoneMobile}</span>
+            </a>
             <Link
               href={toggleLocale}
               className="font-medium text-slate-300 hover:text-white transition-colors border border-slate-600 px-2 py-0.5 rounded text-xs"
