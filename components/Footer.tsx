@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { COMPANY, NAV, PARTNERS } from "@/lib/data";
 import { Separator } from "@/components/ui/separator";
 
@@ -17,8 +18,11 @@ const LABELS: Record<string, Record<string, string>> = {
 
 export default function Footer({ locale }: FooterProps) {
   const t = (key: string) => LABELS[key]?.[locale] ?? key;
-  const localePath = (href: string) =>
-    locale === "en" ? `/en${href === "/" ? "" : href}` : href;
+  const localePath = (href: string) => {
+    if (locale === "en") return `/en${href === "/" ? "" : href}`;
+    if (locale === "ja") return `/ja${href === "/" ? "" : href}`;
+    return href;
+  };
 
   return (
     <footer className="bg-slate-950 text-slate-400">
@@ -27,15 +31,19 @@ export default function Footer({ locale }: FooterProps) {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 bg-white flex items-center justify-center rounded">
-                <span className="text-slate-900 font-bold text-xs tracking-tighter">NP</span>
-              </div>
+              <Image
+                src="/images/logo/logo-ngu-phuc-round.png"
+                alt="Thép Ngũ Phúc"
+                width={40}
+                height={40}
+                className="object-contain h-10 w-auto"
+              />
               <div>
                 <div className="font-bold text-white text-sm">
-                  {locale === "vi" ? "THÉP NGŨ PHÚC" : "NGU PHUC STEEL"}
+                  {locale === "vi" ? "THÉP NGŨ PHÚC" : locale === "ja" ? "グーフック スチール" : "NGU PHUC STEEL"}
                 </div>
                 <div className="text-slate-500 text-xs">
-                  {locale === "vi" ? "Cổ phần Thép Ngũ Phúc" : "Steel Joint Stock Co."}
+                  {locale === "vi" ? "Cổ phần Thép Ngũ Phúc" : locale === "ja" ? "鉄鋼合資会社" : "Steel Joint Stock Co."}
                 </div>
               </div>
             </div>
