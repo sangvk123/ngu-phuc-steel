@@ -6,52 +6,74 @@ import { Separator } from "@/components/ui/separator";
 import VideoSection from "@/components/VideoSection";
 
 interface PageProps {
-  params: Promise<{ locale: "vi" | "en" }>;
+  params: Promise<{ locale: "vi" | "en" | "ja" }>;
 }
 
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   const isEn = locale === "en";
-  const localePath = (href: string) => (isEn ? `/en${href === "/" ? "" : href}` : href);
+  const isJa = locale === "ja";
+  const localePath = (href: string) => {
+    if (locale === "en") return `/en${href === "/" ? "" : href}`;
+    if (locale === "ja") return `/ja${href === "/" ? "" : href}`;
+    return href;
+  };
 
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────── */}
-      <section className="bg-slate-950 text-white">
+      <section className="bg-slate-950 text-white overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 md:py-28">
-          <div className="max-w-3xl">
-            <p className="text-slate-400 text-xs uppercase tracking-widest mb-6 font-medium">
-              ISO 9001:2015 · BSI Certified 2024 · Hai Phong, Vietnam
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6 tracking-tight">
-              {isEn ? (
-                <>
-                  Vietnam&apos;s Premier<br />
-                  <span className="text-slate-300">Steel Processor</span>
-                </>
-              ) : (
-                <>
-                  Nhà cung cấp thép<br />
-                  <span className="text-slate-300">hàng đầu miền Bắc</span>
-                </>
-              )}
-            </h1>
-            <p className="text-slate-400 text-lg leading-relaxed mb-10 max-w-2xl">
-              {isEn
-                ? "30 years of experience supplying and processing high-quality steel for FDI manufacturers, shipbuilding, automotive, and construction sectors across Vietnam."
-                : "30 năm kinh nghiệm cung cấp và gia công thép chất lượng cao cho các doanh nghiệp FDI, đóng tàu, công nghiệp ô tô và xây dựng tại Việt Nam."}
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Button asChild className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-6 h-11 rounded text-sm">
-                <Link href={localePath("/lien-he")}>
-                  {isEn ? "Request a Quote" : "Yêu cầu báo giá"}
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white px-6 h-11 rounded text-sm">
-                <Link href={localePath("/dich-vu")}>
-                  {isEn ? "View Capabilities" : "Xem năng lực"}
-                </Link>
-              </Button>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Image — fade in from LEFT */}
+            <div className="relative h-64 sm:h-80 lg:h-[420px] rounded overflow-hidden hero-fade-left order-2 lg:order-1">
+              <Image
+                src={IMAGES.services.slitting}
+                alt={isJa ? "グーフック鉄鋼 工場" : isEn ? "Ngu Phuc Steel Factory" : "Nhà máy Thép Ngũ Phúc"}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 text-xs text-slate-400 uppercase tracking-widest font-medium">
+                {isJa ? "ハイフォン工場 — 2022年設置" : isEn ? "Factory 2 — An Duong, Hai Phong" : "Nhà máy 2 — An Dương, Hải Phòng"}
+              </div>
+            </div>
+
+            {/* Text — fade in with slight delay */}
+            <div className="hero-fade-left-delay order-1 lg:order-2">
+              <p className="text-slate-400 text-xs uppercase tracking-widest mb-6 font-medium">
+                ISO 9001:2015 · BSI Certified 2024 · Hai Phong, Vietnam
+              </p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6 tracking-tight">
+                {isJa ? (
+                  <>北ベトナム最大級<br /><span className="text-slate-300">鉄鋼サプライヤー</span></>
+                ) : isEn ? (
+                  <>Vietnam&apos;s Premier<br /><span className="text-slate-300">Steel Processor</span></>
+                ) : (
+                  <>Nhà cung cấp thép<br /><span className="text-slate-300">hàng đầu miền Bắc</span></>
+                )}
+              </h1>
+              <p className="text-slate-400 text-lg leading-relaxed mb-10">
+                {isJa
+                  ? "創業30年以上の実績を誇る高品質鉄鋼の供給・加工会社。FDI製造業、造船、自動車、建設業に対応。ISO 9001:2015認証取得。"
+                  : isEn
+                  ? "30 years of experience supplying and processing high-quality steel for FDI manufacturers, shipbuilding, automotive, and construction sectors across Vietnam."
+                  : "30 năm kinh nghiệm cung cấp và gia công thép chất lượng cao cho các doanh nghiệp FDI, đóng tàu, công nghiệp ô tô và xây dựng tại Việt Nam."}
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button asChild className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-6 h-11 rounded text-sm">
+                  <Link href={localePath("/lien-he")}>
+                    {isJa ? "見積もり依頼" : isEn ? "Request a Quote" : "Yêu cầu báo giá"}
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white px-6 h-11 rounded text-sm">
+                  <Link href={localePath("/dich-vu")}>
+                    {isJa ? "サービス詳細" : isEn ? "View Capabilities" : "Xem năng lực"}
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -64,7 +86,7 @@ export default async function HomePage({ params }: PageProps) {
                 <div key={s.value} className="py-8 px-6 text-center">
                   <div className="text-3xl font-bold text-white mb-1">{s.value}</div>
                   <div className="text-xs text-slate-500 leading-snug">
-                    {isEn ? s.labelEn : s.labelVi}
+                    {isJa ? s.labelJa : isEn ? s.labelEn : s.labelVi}
                   </div>
                 </div>
               ))}

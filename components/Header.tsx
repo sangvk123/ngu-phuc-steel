@@ -1,58 +1,122 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { NAV, COMPANY } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
+type Locale = "vi" | "en" | "ja";
+
 interface HeaderProps {
-  locale: "vi" | "en";
+  locale: Locale;
 }
 
 const LABELS: Record<string, Record<string, string>> = {
-  home: { vi: "Trang chủ", en: "Home" },
-  about: { vi: "Giới thiệu", en: "About" },
-  products: { vi: "Sản phẩm", en: "Products" },
-  services: { vi: "Dịch vụ", en: "Services" },
-  projects: { vi: "Dự án", en: "Projects" },
-  contact: { vi: "Liên hệ", en: "Contact" },
-  quote: { vi: "Yêu cầu báo giá", en: "Request Quote" },
+  home:     { vi: "Trang chủ",       en: "Home",          ja: "ホーム" },
+  about:    { vi: "Giới thiệu",      en: "About",         ja: "会社概要" },
+  products: { vi: "Sản phẩm",        en: "Products",      ja: "製品" },
+  services: { vi: "Dịch vụ",         en: "Services",      ja: "サービス" },
+  projects: { vi: "Dự án",           en: "Projects",      ja: "プロジェクト" },
+  contact:  { vi: "Liên hệ",         en: "Contact",       ja: "お問い合わせ" },
+  quote:    { vi: "Yêu cầu báo giá", en: "Request Quote", ja: "見積もり依頼" },
 };
+
+const LANGS = [
+  { code: "vi", flag: "🇻🇳", label: "Tiếng Việt" },
+  { code: "en", flag: "🇺🇸", label: "English" },
+  { code: "ja", flag: "🇯🇵", label: "日本語" },
+] as const;
 
 export default function Header({ locale }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
   const t = (key: string) => LABELS[key]?.[locale] ?? key;
 
-  const localePath = (href: string) =>
-    locale === "en" ? `/en${href === "/" ? "" : href}` : href;
+  const localePath = (href: string) => {
+    if (locale === "en") return `/en${href === "/" ? "" : href}`;
+    if (locale === "ja") return `/ja${href === "/" ? "" : href}`;
+    return href;
+  };
 
-  const toggleLocale = locale === "vi" ? "/en" : "/";
+  const switchLocalePath = (targetLocale: string) => {
+    let base = pathname;
+    if (base.startsWith("/en")) base = base.slice(3) || "/";
+    if (base.startsWith("/ja")) base = base.slice(3) || "/";
+    if (targetLocale === "vi") return base || "/";
+    return `/${targetLocale}${base === "/" ? "" : base}`;
+  };
+
+  const currentLang = LANGS.find((l) => l.code === locale) ?? LANGS[0];
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const navChildLabel = (child: { labelVi: string; labelEn: string }) =>
+    locale === "vi" ? child.labelVi : child.labelEn;
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
       {/* Top bar */}
       <div className="bg-slate-900 text-slate-300 text-xs">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-8 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <a href={`tel:${COMPANY.phone}`} className="hover:text-white transition-colors">
               {COMPANY.phone}
             </a>
-            <span className="text-slate-600 hidden sm:block">|</span>
-            <span className="hidden sm:block">{locale === "vi" ? COMPANY.hours : COMPANY.hoursEn}</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <a href={`tel:${COMPANY.phoneMobile}`} className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
-              <span className="text-slate-500">{locale === "vi" ? "Hotline:" : "Sales:"}</span>
-              <span>{COMPANY.phoneMobile}</span>
+            <span className="text-slate-700 hidden sm:block">·</span>
+            <a href={`tel:${COMPANY.phoneMobile}`} className="hidden sm:block hover:text-white transition-colors">
+              {COMPANY.phoneMobile}
             </a>
-            <Link
-              href={toggleLocale}
-              className="font-medium text-slate-300 hover:text-white transition-colors border border-slate-600 px-2 py-0.5 rounded text-xs"
+            <span className="text-slate-700 hidden md:block">·</span>
+            <span className="hidden md:block text-slate-500">
+              {locale === "vi" ? COMPANY.hours : locale === "ja" ? "月〜土 07:30–17:30" : COMPANY.hoursEn}
+            </span>
+          </div>
+
+          {/* Language dropdown */}
+          <div ref={langRef} className="relative">
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="flex items-center gap-1.5 font-medium text-slate-300 hover:text-white transition-colors border border-slate-600 hover:border-slate-400 px-2.5 py-0.5 rounded text-xs"
             >
-              {locale === "vi" ? "EN" : "VI"}
-            </Link>
+              <span>{currentLang.flag}</span>
+              <span>{currentLang.code.toUpperCase()}</span>
+              <svg className="w-2.5 h-2.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {langOpen && (
+              <div className="absolute right-0 top-full mt-1.5 bg-white border border-slate-200 rounded shadow-lg z-50 min-w-36 overflow-hidden">
+                {LANGS.map((l) => (
+                  <Link
+                    key={l.code}
+                    href={switchLocalePath(l.code)}
+                    onClick={() => setLangOpen(false)}
+                    className={`flex items-center gap-2.5 px-3 py-2 text-xs transition-colors ${
+                      l.code === locale
+                        ? "bg-slate-50 font-semibold text-slate-900"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                    }`}
+                  >
+                    <span className="text-sm">{l.flag}</span>
+                    <span>{l.label}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -64,7 +128,7 @@ export default function Header({ locale }: HeaderProps) {
           <Link href={localePath("/")} className="flex items-center gap-3 flex-shrink-0">
             <Image
               src="/images/logo/logo-ngu-phuc-round.png"
-              alt={locale === "vi" ? "Thép Ngũ Phúc" : "Ngu Phuc Steel"}
+              alt={locale === "vi" ? "Thép Ngũ Phúc" : locale === "ja" ? "グーフックスチール" : "Ngu Phuc Steel"}
               width={40}
               height={52}
               className="object-contain h-11 w-auto"
@@ -72,10 +136,10 @@ export default function Header({ locale }: HeaderProps) {
             />
             <div>
               <div className="font-bold text-slate-900 text-sm leading-tight tracking-tight">
-                {locale === "vi" ? "THÉP NGŨ PHÚC" : "NGU PHUC STEEL"}
+                {locale === "vi" ? "THÉP NGŨ PHÚC" : locale === "ja" ? "グーフック スチール" : "NGU PHUC STEEL"}
               </div>
               <div className="text-slate-400 text-xs">
-                {locale === "vi" ? "Cung cấp & Gia công thép" : "Steel Supply & Processing"}
+                {locale === "vi" ? "Cung cấp & Gia công thép" : locale === "ja" ? "鉄鋼供給・加工" : "Steel Supply & Processing"}
               </div>
             </div>
           </Link>
@@ -108,7 +172,7 @@ export default function Header({ locale }: HeaderProps) {
                         href={localePath(child.href)}
                         className="block px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors border-b border-slate-100 last:border-0"
                       >
-                        {locale === "vi" ? child.labelVi : child.labelEn}
+                        {navChildLabel(child)}
                       </Link>
                     ))}
                   </div>
@@ -162,7 +226,7 @@ export default function Header({ locale }: HeaderProps) {
                         className="block px-3 py-1.5 text-xs text-slate-500 hover:text-slate-800 hover:bg-slate-50 rounded"
                         onClick={() => setMobileOpen(false)}
                       >
-                        {locale === "vi" ? child.labelVi : child.labelEn}
+                        {navChildLabel(child)}
                       </Link>
                     ))}
                   </div>

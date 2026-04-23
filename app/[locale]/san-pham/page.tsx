@@ -1,11 +1,54 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { PRODUCTS, COMPANY, IMAGES } from "@/lib/data";
+import { PRODUCTS, GRADE_PRODUCTS, COMPANY, IMAGES } from "@/lib/data";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
-export const metadata: Metadata = { title: "Sản phẩm / Products" };
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const isEn = locale === "en";
+  const BASE = "https://www.nguphucsteel.com.vn";
+
+  return {
+    title: isEn
+      ? "Steel Products – SS400, SAPH440, SPFH590, CR/GI Coils | Ngu Phuc Steel"
+      : "Sản phẩm thép – SS400, SAPH440, SPFH590, Thép cuộn CR/GI | Thép Ngũ Phúc",
+    description: isEn
+      ? "Steel plates (SS400, A36, A515), coated coils (GI, PPGI), automotive steel (SAPH440, SPFH590, CR240LA–CR440LA, DC01–DC06), high-tensile (S700MC, Q460C). Direct import from Nippon Steel, POSCO, JFE."
+      : "Thép tấm SS400, A36 | Thép cuộn mạ GI, PPGI | Thép ô tô SAPH440, SPFH590, CR240LA–CR440LA, DC01–DC06, HC180YD–HC450XD | Thép cường độ cao S700MC, Q460C. Nhập khẩu trực tiếp từ Nippon Steel, POSCO, JFE.",
+    keywords: isEn
+      ? [
+          "SS400 steel vietnam", "SAPH440 steel supplier vietnam", "SPFH590 steel coil vietnam",
+          "CR240LA CR300LA CR330LA CR420LA CR440LA", "DC01 DC02 DC03 DC04 DC05 DC06 steel coil",
+          "HC180YD HC220YD HC260YD HC340XD HC450XD", "DX51D DX52D DX53D DX54D DX56D DX57D",
+          "automotive steel coil vietnam", "high tensile steel S700MC Q460C Q550C",
+          "galvanized steel coil GI vietnam", "PPGI color coated steel vietnam",
+          "steel plate supplier hai phong", "Nippon Steel POSCO JFE distributor vietnam",
+        ]
+      : [
+          "thép tấm SS400 hải phòng", "thép SAPH440 nhà cung cấp", "thép SPFH590 việt nam",
+          "thép cuộn CR240LA CR300LA CR330LA", "thép DC01 DC02 DC03 cuộn",
+          "thép HC180YD HC220YD mạ kẽm", "thép DX51D DX52D galvanized",
+          "thép cuộn ô tô việt nam", "thép cường độ cao S700MC Q460C",
+          "thép mạ kẽm GI hải phòng", "tôn mạ màu PPGI",
+          "thép tấm cán nóng hải phòng", "nhập khẩu Nippon Steel POSCO JFE",
+        ],
+    alternates: {
+      canonical: isEn ? `${BASE}/en/san-pham` : `${BASE}/san-pham`,
+      languages: { vi: `${BASE}/san-pham`, en: `${BASE}/en/san-pham` },
+    },
+    openGraph: {
+      title: isEn
+        ? "Steel Products | Ngu Phuc Steel Vietnam"
+        : "Sản phẩm thép | Thép Ngũ Phúc Hải Phòng",
+      description: isEn
+        ? "SS400, SAPH440, CR/GI coils, SPFH590, high-tensile steel. Direct import, ISO 9001:2015."
+        : "SS400, SAPH440, thép cuộn CR/GI, SPFH590, thép cường độ cao. Nhập khẩu trực tiếp, ISO 9001:2015.",
+      url: isEn ? `${BASE}/en/san-pham` : `${BASE}/san-pham`,
+    },
+  };
+}
 
 interface PageProps { params: Promise<{ locale: "vi" | "en" }> }
 
@@ -99,6 +142,65 @@ export default async function ProductsPage({ params }: PageProps) {
               {i < PRODUCTS.length - 1 && <Separator className="mt-24 bg-slate-100" />}
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ─── GRADE-SPECIFIC PAGES ─── */}
+      <section className="py-16 px-4 sm:px-6 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10">
+            <p className="text-xs text-slate-400 uppercase tracking-widest font-medium mb-3">
+              {isEn ? "Grade-Specific Products" : "Sản phẩm theo mác thép"}
+            </p>
+            <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+              {isEn ? "Specialty Steel Grades" : "Mác thép chuyên dụng"}
+            </h2>
+            <Separator className="mt-4 w-12 bg-slate-900 h-0.5" />
+            <p className="mt-4 text-sm text-slate-500 max-w-xl">
+              {isEn
+                ? "Detailed technical specifications, grade comparison tables, and application guides for specialty steel grades."
+                : "Thông số kỹ thuật chi tiết, bảng so sánh mác thép và hướng dẫn ứng dụng cho các mác thép chuyên dụng."}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {GRADE_PRODUCTS.map((p) => (
+              <Link
+                key={p.id}
+                href={localePath(`/san-pham/${p.id}`)}
+                className="group bg-white border border-slate-200 rounded overflow-hidden hover:border-slate-400 hover:shadow-sm transition-all"
+              >
+                {p.image && (
+                  <div className="relative h-40 bg-slate-100 overflow-hidden">
+                    <Image
+                      src={p.image}
+                      alt={isEn ? p.nameEn : p.nameVi}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                )}
+                <div className="p-5">
+                  <h3 className="font-semibold text-slate-900 mb-2 text-sm leading-snug">
+                    {isEn ? p.nameEn : p.nameVi}
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {p.keyGrades.slice(0, 5).map((g) => (
+                      <span key={g} className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">
+                        {g}
+                      </span>
+                    ))}
+                    {p.keyGrades.length > 5 && (
+                      <span className="text-xs text-slate-400">+{p.keyGrades.length - 5}</span>
+                    )}
+                  </div>
+                  <span className="text-xs font-semibold text-slate-700 group-hover:text-slate-900 transition-colors">
+                    {isEn ? "View specs →" : "Xem thông số →"}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

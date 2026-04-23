@@ -3,7 +3,7 @@ import { COMPANY, NAV, PARTNERS } from "@/lib/data";
 import { Separator } from "@/components/ui/separator";
 
 interface FooterProps {
-  locale: "vi" | "en";
+  locale: "vi" | "en" | "ja";
 }
 
 const LABELS: Record<string, Record<string, string>> = {

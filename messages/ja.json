@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "about": "会社概要",
+    "products": "製品",
+    "services": "サービス",
+    "projects": "プロジェクト",
+    "contact": "お問い合わせ",
+    "quote": "見積もり依頼"
+  },
+  "home": {
+    "hero": {
+      "badge": "ISO 9001:2015 · BSI認証 2024",
+      "heading1": "北ベトナム最大級",
+      "heading2": "鉄鋼サプライヤー",
+      "sub": "30年の実績を持つ高品質鉄鋼の供給・加工会社。FDI製造業、造船、自動車、建設業向けに対応しています。",
+      "cta_primary": "見積もり依頼",
+      "cta_secondary": "サービス詳細"
+    },
+    "stats": {
+      "years": { "value": "30+", "label": "創業年数" },
+      "partners": { "value": "10", "label": "国際パートナー" },
+      "capacity": { "value": "#1", "label": "ベトナム最大スリットライン" },
+      "iso": { "value": "ISO", "label": "9001:2015認証取得" }
+    },
+    "services_title": "主要サービス",
+    "products_title": "製品ラインアップ",
+    "projects_title": "主要プロジェクト",
+    "partners_title": "戦略的パートナー",
+    "cta_title": "お見積もり・技術相談はこちら",
+    "cta_sub": "営業チームが対応いたします（月〜土 07:30〜17:30）。",
+    "cta_phone": "電話する",
+    "cta_form": "お問い合わせ"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "sub": "見積もり依頼またはセールスチームへのお問い合わせはこちら。",
+    "form": {
+      "name": "お名前",
+      "company": "会社名",
+      "phone": "電話番号",
+      "email": "メールアドレス",
+      "product": "ご希望の製品・サービス",
+      "message": "詳細なご要件",
+      "submit": "送信する",
+      "success": "お問い合わせを受け付けました。24時間以内にご返答いたします。"
+    }
+  },
+  "footer": {
+    "tagline": "30年の実績 — 国際品質",
+    "copyright": "Ngu Phuc Steel Joint Stock Company. All rights reserved."
+  }
+}

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = { title: "Giới thiệu / About" };
 
-interface PageProps { params: Promise<{ locale: "vi" | "en" }> }
+interface PageProps { params: Promise<{ locale: "vi" | "en" | "ja" }> }
 
 export default async function AboutPage({ params }: PageProps) {
   const { locale } = await params;

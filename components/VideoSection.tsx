@@ -4,7 +4,7 @@ import { VIDEOS } from "@/lib/data";
 import { Separator } from "@/components/ui/separator";
 
 interface VideoSectionProps {
-  locale: "vi" | "en";
+  locale: "vi" | "en" | "ja";
 }
 
 export default function VideoSection({ locale }: VideoSectionProps) {
