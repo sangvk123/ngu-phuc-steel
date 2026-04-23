@@ -224,7 +224,7 @@ export default async function HomePage({ params }: PageProps) {
                   alt={p.name}
                   width={120}
                   height={60}
-                  className="object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-200"
+                  className="object-contain partner-logo"
                 />
               ) : (
                 <span key={p.name} className="text-sm font-semibold text-slate-400">

@@ -164,7 +164,7 @@ export default async function AboutPage({ params }: PageProps) {
                       alt={p.name}
                       width={100}
                       height={50}
-                      className="object-contain h-10 w-auto"
+                      className="object-contain h-10 w-auto partner-logo"
                     />
                   )}
                   <div className="font-semibold text-slate-800 text-xs text-center">{p.name}</div>

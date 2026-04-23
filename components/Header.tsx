@@ -58,15 +58,23 @@ export default function Header({ locale }: HeaderProps) {
       <nav className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href={localePath("/")} className="flex-shrink-0">
+          <Link href={localePath("/")} className="flex items-center gap-3 flex-shrink-0">
             <Image
-              src="/images/logo/logo-ngu-phuc.png"
+              src="/images/logo/logo-ngu-phuc-round.png"
               alt={locale === "vi" ? "Thép Ngũ Phúc" : "Ngu Phuc Steel"}
-              width={150}
-              height={45}
-              className="object-contain h-10 w-auto"
+              width={40}
+              height={52}
+              className="object-contain h-11 w-auto"
               priority
             />
+            <div>
+              <div className="font-bold text-slate-900 text-sm leading-tight tracking-tight">
+                {locale === "vi" ? "THÉP NGŨ PHÚC" : "NGU PHUC STEEL"}
+              </div>
+              <div className="text-slate-400 text-xs">
+                {locale === "vi" ? "Cung cấp & Gia công thép" : "Steel Supply & Processing"}
+              </div>
+            </div>
           </Link>
 
           {/* Desktop nav */}
