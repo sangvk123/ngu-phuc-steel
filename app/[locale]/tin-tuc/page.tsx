@@ -83,7 +83,7 @@ export default async function NewsPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="bg-slate-950 text-white py-16 px-4 sm:px-6">
+      <div className="bg-[#060d1a] text-white py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <nav className="text-xs text-slate-500 mb-4 flex items-center gap-2">
             <Link href={localePath("/")} className="hover:text-slate-300 transition-colors">
@@ -110,7 +110,7 @@ export default async function NewsPage({ params }: PageProps) {
                 key={cat.vi}
                 className={`px-3 py-1.5 text-xs font-medium rounded border transition-colors ${
                   i === 0
-                    ? "bg-slate-900 text-white border-slate-900"
+                    ? "bg-[#1a56a0] text-white border-[#1a56a0]"
                     : "border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-800"
                 }`}
               >
@@ -129,7 +129,7 @@ export default async function NewsPage({ params }: PageProps) {
                 <div
                   className={`h-1 rounded-t ${
                     (isEn ? article.categoryEn : article.categoryVi).includes(isEn ? "Company" : "công ty")
-                      ? "bg-slate-900"
+                      ? "bg-[#1a56a0]"
                       : (isEn ? article.categoryEn : article.categoryVi).includes(isEn ? "Project" : "Dự án")
                       ? "bg-blue-700"
                       : "bg-slate-500"

@@ -22,40 +22,40 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────── */}
-      <section className="bg-slate-950 text-white overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 md:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* Image — fade in from LEFT */}
-            <div className="relative h-64 sm:h-80 lg:h-[420px] rounded overflow-hidden hero-fade-left order-2 lg:order-1">
-              <Image
-                src={IMAGES.services.slitting}
-                alt={isJa ? "グーフック鉄鋼 工場" : isEn ? "Ngu Phuc Steel Factory" : "Nhà máy Thép Ngũ Phúc"}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 text-xs text-slate-400 uppercase tracking-widest font-medium">
-                {isJa ? "ハイフォン工場 — 2022年設置" : isEn ? "Factory 2 — An Duong, Hai Phong" : "Nhà máy 2 — An Dương, Hải Phòng"}
-              </div>
-            </div>
+      <section className="relative overflow-hidden text-white flex flex-col">
+        {/* Full-bleed background image */}
+        <div className="absolute inset-0">
+          <Image
+            src={IMAGES.services.slitting}
+            alt={isJa ? "グーフック鉄鋼 工場" : isEn ? "Ngu Phuc Steel Factory" : "Nhà máy Thép Ngũ Phúc"}
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
+          {/* Mobile: near-solid dark overlay so text is readable */}
+          <div className="absolute inset-0 lg:hidden bg-[#060d1a]/88" />
+          {/* Desktop: solid navy on left fading to transparent on right */}
+          <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-[#060d1a] from-[42%] via-[#060d1a]/78 via-[65%] to-[#060d1a]/25" />
+        </div>
 
-            {/* Text — fade in with slight delay */}
-            <div className="hero-fade-left-delay order-1 lg:order-2">
+        {/* Text content */}
+        <div className="relative flex-1 flex items-center min-h-[82vh]">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-24 lg:py-32">
+            <div className="max-w-xl hero-fade-left-delay">
               <p className="text-slate-400 text-xs uppercase tracking-widest mb-6 font-medium">
                 ISO 9001:2015 · BSI Certified 2024 · Hai Phong, Vietnam
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6 tracking-tight">
                 {isJa ? (
-                  <>北ベトナム最大級<br /><span className="text-slate-300">鉄鋼サプライヤー</span></>
+                  <>北ベトナム最大級<br /><span className="text-[#5b9bd5]">鉄鋼サプライヤー</span></>
                 ) : isEn ? (
-                  <>Vietnam&apos;s Premier<br /><span className="text-slate-300">Steel Processor</span></>
+                  <>Vietnam&apos;s Premier<br /><span className="text-[#5b9bd5]">Steel Processor</span></>
                 ) : (
-                  <>Nhà cung cấp thép<br /><span className="text-slate-300">hàng đầu miền Bắc</span></>
+                  <>Nhà cung cấp thép<br /><span className="text-[#5b9bd5]">hàng đầu miền Bắc</span></>
                 )}
               </h1>
-              <p className="text-slate-400 text-lg leading-relaxed mb-10">
+              <p className="text-slate-300 text-lg leading-relaxed mb-10">
                 {isJa
                   ? "創業30年以上の実績を誇る高品質鉄鋼の供給・加工会社。FDI製造業、造船、自動車、建設業に対応。ISO 9001:2015認証取得。"
                   : isEn
@@ -63,29 +63,33 @@ export default async function HomePage({ params }: PageProps) {
                   : "30 năm kinh nghiệm cung cấp và gia công thép chất lượng cao cho các doanh nghiệp FDI, đóng tàu, công nghiệp ô tô và xây dựng tại Việt Nam."}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button asChild className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-6 h-11 rounded text-sm">
+                <Button asChild className="bg-[#1a56a0] hover:bg-[#154a8a] text-white font-semibold px-6 h-11 rounded text-sm">
                   <Link href={localePath("/lien-he")}>
                     {isJa ? "見積もり依頼" : isEn ? "Request a Quote" : "Yêu cầu báo giá"}
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white px-6 h-11 rounded text-sm">
+                <Button asChild variant="outline" className="border-white/30 text-slate-200 hover:bg-white/10 hover:text-white px-6 h-11 rounded text-sm">
                   <Link href={localePath("/dich-vu")}>
                     {isJa ? "サービス詳細" : isEn ? "View Capabilities" : "Xem năng lực"}
                   </Link>
                 </Button>
               </div>
             </div>
+            {/* Factory label — desktop only, bottom right */}
+            <div className="hidden lg:block absolute bottom-8 right-6 text-xs text-white/40 uppercase tracking-widest font-medium">
+              {isJa ? "ハイフォン工場 — 2022年設置" : isEn ? "Factory 2 — An Duong, Hai Phong" : "Nhà máy 2 — An Dương, Hải Phòng"}
+            </div>
           </div>
         </div>
 
         {/* Stats row */}
-        <div className="border-t border-slate-800">
+        <div className="relative border-t border-white/10 bg-[#060d1a]/75 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-800">
-              {STATS.map((s) => (
-                <div key={s.value} className="py-8 px-6 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4">
+              {STATS.map((s, i) => (
+                <div key={s.value} className={`py-8 px-6 text-center ${i > 0 ? "border-l border-white/10" : ""}`}>
                   <div className="text-3xl font-bold text-white mb-1">{s.value}</div>
-                  <div className="text-xs text-slate-500 leading-snug">
+                  <div className="text-xs text-slate-400 leading-snug">
                     {isJa ? s.labelJa : isEn ? s.labelEn : s.labelVi}
                   </div>
                 </div>
@@ -105,7 +109,7 @@ export default async function HomePage({ params }: PageProps) {
             <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
               {isEn ? "Core Capabilities" : "Năng lực cốt lõi"}
             </h2>
-            <Separator className="mt-4 w-12 bg-slate-900 h-0.5" />
+            <Separator className="mt-4 w-12 bg-[#1a56a0] h-0.5" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200">
             {SERVICES.map((s) => (
@@ -142,7 +146,7 @@ export default async function HomePage({ params }: PageProps) {
               <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
                 {isEn ? "Steel Products" : "Danh mục thép"}
               </h2>
-              <Separator className="mt-4 w-12 bg-slate-900 h-0.5" />
+              <Separator className="mt-4 w-12 bg-[#1a56a0] h-0.5" />
             </div>
             <Link
               href={localePath("/san-pham")}
@@ -200,7 +204,7 @@ export default async function HomePage({ params }: PageProps) {
             <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
               {isEn ? "Featured Projects" : "Dự án tiêu biểu"}
             </h2>
-            <Separator className="mt-4 w-12 bg-slate-900 h-0.5" />
+            <Separator className="mt-4 w-12 bg-[#1a56a0] h-0.5" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {PROJECTS.map((proj) => (
@@ -262,7 +266,7 @@ export default async function HomePage({ params }: PageProps) {
       <VideoSection locale={locale} />
 
       {/* ─── CTA ──────────────────────────────────────────────── */}
-      <section className="py-20 px-4 sm:px-6 bg-slate-900 text-white">
+      <section className="py-20 px-4 sm:px-6 bg-[#060d1a] text-white">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">
             {isEn ? "Ready to discuss your requirements?" : "Cần tư vấn hoặc báo giá?"}
@@ -273,12 +277,12 @@ export default async function HomePage({ params }: PageProps) {
               : "Đội ngũ kỹ thuật sẵn sàng hỗ trợ Thứ 2 – Thứ 7, 07:30 – 17:30. Gửi yêu cầu hoặc liên hệ trực tiếp."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-6 h-11 rounded text-sm">
+            <Button asChild className="bg-[#1a56a0] hover:bg-[#154a8a] text-white font-semibold px-6 h-11 rounded text-sm">
               <Link href={localePath("/lien-he")}>
                 {isEn ? "Send a Request" : "Gửi yêu cầu"}
               </Link>
             </Button>
-            <Button asChild variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-6 h-11 rounded text-sm">
+            <Button asChild variant="outline" className="border-white/25 text-slate-300 hover:bg-white/10 hover:text-white px-6 h-11 rounded text-sm">
               <a href={`tel:${COMPANY.phone}`}>
                 {isEn ? "Call Sales Team" : `Gọi ${COMPANY.phone}`}
               </a>

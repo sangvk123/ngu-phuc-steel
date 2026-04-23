@@ -70,7 +70,7 @@ export default function Header({ locale }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
       {/* Top bar */}
-      <div className="bg-slate-900 text-slate-300 text-xs">
+      <div className="bg-[#060d1a] text-slate-300 text-xs">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-8 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <a href={`tel:${COMPANY.phone}`} className="hover:text-white transition-colors">
@@ -182,7 +182,7 @@ export default function Header({ locale }: HeaderProps) {
           </ul>
 
           <div className="hidden lg:flex items-center gap-3">
-            <Button asChild size="sm" className="bg-slate-900 hover:bg-slate-700 text-white text-sm font-medium rounded">
+            <Button asChild size="sm" className="bg-[#1a56a0] hover:bg-[#154a8a] text-white text-sm font-medium rounded">
               <Link href={localePath("/lien-he")}>{t("quote")}</Link>
             </Button>
           </div>
@@ -234,7 +234,7 @@ export default function Header({ locale }: HeaderProps) {
               </div>
             ))}
             <Separator className="my-2" />
-            <Button asChild className="w-full bg-slate-900 hover:bg-slate-700 text-white text-sm rounded">
+            <Button asChild className="w-full bg-[#1a56a0] hover:bg-[#154a8a] text-white text-sm rounded">
               <Link href={localePath("/lien-he")} onClick={() => setMobileOpen(false)}>
                 {t("quote")}
               </Link>

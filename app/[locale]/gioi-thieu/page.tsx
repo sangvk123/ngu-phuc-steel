@@ -16,7 +16,7 @@ export default async function AboutPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="bg-slate-950 text-white py-16 px-4 sm:px-6">
+      <div className="bg-[#060d1a] text-white py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <nav className="text-xs text-slate-500 mb-4 flex items-center gap-2">
             <Link href={localePath("/")} className="hover:text-slate-300 transition-colors">
@@ -64,7 +64,7 @@ export default async function AboutPage({ params }: PageProps) {
               </div>
             </div>
 
-            <div className="bg-slate-950 rounded text-white p-8">
+            <div className="bg-[#060d1a] rounded text-white p-8">
               <p className="text-xs text-slate-500 uppercase tracking-widest font-medium mb-6">
                 {isEn ? "Company Information" : "Thông tin công ty"}
               </p>
@@ -186,7 +186,7 @@ export default async function AboutPage({ params }: PageProps) {
               ? "Contact our sales team for pricing, technical specifications, and partnership inquiries."
               : "Liên hệ đội ngũ kinh doanh để được tư vấn, báo giá và thảo luận về hợp tác."}
           </p>
-          <Button asChild className="bg-slate-900 hover:bg-slate-700 text-white rounded px-6 h-11 text-sm">
+          <Button asChild className="bg-[#1a56a0] hover:bg-[#154a8a] text-white rounded px-6 h-11 text-sm">
             <Link href={localePath("/lien-he")}>
               {isEn ? "Contact Us" : "Liên hệ ngay"}
             </Link>

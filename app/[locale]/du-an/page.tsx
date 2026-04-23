@@ -16,7 +16,7 @@ export default async function ProjectsPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="bg-slate-950 text-white py-16 px-4 sm:px-6">
+      <div className="bg-[#060d1a] text-white py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <nav className="text-xs text-slate-500 mb-4 flex items-center gap-2">
             <Link href={localePath("/")} className="hover:text-slate-300 transition-colors">
@@ -81,7 +81,7 @@ export default async function ProjectsPage({ params }: PageProps) {
               ? "We work with FDI manufacturers, shipyards, construction firms, and industrial parks across Vietnam."
               : "Chúng tôi hợp tác với doanh nghiệp FDI, nhà máy đóng tàu, xây dựng và khu công nghiệp trên toàn Việt Nam."}
           </p>
-          <Button asChild className="bg-slate-900 hover:bg-slate-700 text-white rounded px-6 h-11 text-sm">
+          <Button asChild className="bg-[#1a56a0] hover:bg-[#154a8a] text-white rounded px-6 h-11 text-sm">
             <Link href={localePath("/lien-he")}>
               {isEn ? "Contact Us" : "Liên hệ hợp tác"}
             </Link>

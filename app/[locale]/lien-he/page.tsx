@@ -55,7 +55,7 @@ export default function ContactPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="bg-slate-950 text-white py-16 px-4 sm:px-6">
+      <div className="bg-[#060d1a] text-white py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <nav className="text-xs text-slate-500 mb-4 flex items-center gap-2">
             <Link href={localePath("/")} className="hover:text-slate-300 transition-colors">
@@ -146,7 +146,7 @@ export default function ContactPage({ params }: PageProps) {
 
             {status === "success" ? (
               <div className="border border-slate-200 rounded p-8 text-center">
-                <div className="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-10 h-10 bg-[#1a56a0] rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -283,7 +283,7 @@ export default function ContactPage({ params }: PageProps) {
                 <Button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="bg-slate-900 hover:bg-slate-700 text-white rounded px-8 h-11 text-sm font-medium w-full sm:w-auto"
+                  className="bg-[#1a56a0] hover:bg-[#154a8a] text-white rounded px-8 h-11 text-sm font-medium w-full sm:w-auto"
                 >
                   {status === "submitting"
                     ? (isEn ? "Sending..." : "Đang gửi...")

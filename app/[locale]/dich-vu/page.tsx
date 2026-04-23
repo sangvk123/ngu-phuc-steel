@@ -16,7 +16,7 @@ export default async function ServicesPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="bg-slate-950 text-white py-16 px-4 sm:px-6">
+      <div className="bg-[#060d1a] text-white py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <nav className="text-xs text-slate-500 mb-4 flex items-center gap-2">
             <Link href={localePath("/")} className="hover:text-slate-300 transition-colors">
@@ -40,7 +40,7 @@ export default async function ServicesPage({ params }: PageProps) {
       </div>
 
       {/* Hero feature: Slitting Line */}
-      <section className="py-20 px-4 sm:px-6 bg-slate-900 text-white">
+      <section className="py-20 px-4 sm:px-6 bg-[#060d1a] text-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -163,7 +163,7 @@ export default async function ServicesPage({ params }: PageProps) {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Button asChild className="bg-slate-900 hover:bg-slate-700 text-white rounded px-6 h-11 text-sm">
+            <Button asChild className="bg-[#1a56a0] hover:bg-[#154a8a] text-white rounded px-6 h-11 text-sm">
               <Link href={localePath("/lien-he")}>
                 {isEn ? "Request a Service" : "Yêu cầu dịch vụ"}
               </Link>

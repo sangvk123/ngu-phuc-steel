@@ -59,7 +59,7 @@ export default async function ProductsPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="bg-slate-950 text-white py-16 px-4 sm:px-6">
+      <div className="bg-[#060d1a] text-white py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <nav className="text-xs text-slate-500 mb-4 flex items-center gap-2">
             <Link href={localePath("/")} className="hover:text-slate-300 transition-colors">
@@ -132,7 +132,7 @@ export default async function ProductsPage({ params }: PageProps) {
                     </dl>
                   </div>
 
-                  <Button asChild className="bg-slate-900 hover:bg-slate-700 text-white rounded text-sm px-5 h-10">
+                  <Button asChild className="bg-[#1a56a0] hover:bg-[#154a8a] text-white rounded text-sm px-5 h-10">
                     <Link href={localePath("/lien-he")}>
                       {isEn ? "Request a Quote" : "Yêu cầu báo giá"} →
                     </Link>
@@ -155,7 +155,7 @@ export default async function ProductsPage({ params }: PageProps) {
             <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
               {isEn ? "Specialty Steel Grades" : "Mác thép chuyên dụng"}
             </h2>
-            <Separator className="mt-4 w-12 bg-slate-900 h-0.5" />
+            <Separator className="mt-4 w-12 bg-[#1a56a0] h-0.5" />
             <p className="mt-4 text-sm text-slate-500 max-w-xl">
               {isEn
                 ? "Detailed technical specifications, grade comparison tables, and application guides for specialty steel grades."
@@ -204,7 +204,7 @@ export default async function ProductsPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="py-14 px-4 sm:px-6 bg-slate-950 text-white text-center">
+      <section className="py-14 px-4 sm:px-6 bg-[#060d1a] text-white text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-3 tracking-tight">
             {isEn ? "Need a different specification?" : "Cần quy cách khác?"}
